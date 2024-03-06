@@ -1,0 +1,7 @@
+@mixin font($size, $color: false) {
+  font-size: $size;
+
+  @if $color != false {
+    color : $color
+  }
+}

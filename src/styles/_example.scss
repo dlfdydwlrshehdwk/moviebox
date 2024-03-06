@@ -1,0 +1,9 @@
+// scss 예제 
+
+.class {
+  .class2 {} // .class .class
+  &.class2 {}  // .class.class2
+  & > .class2 {} // .class > .class2
+  &::after {} // .class::after
+  &-class2 {} // .class-class2
+}

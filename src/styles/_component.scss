@@ -1,0 +1,97 @@
+.component {
+  &.-main-poster {
+    width: 100%;
+    max-width: 300px;
+    color: white;
+    .poster-set {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 245/352;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      &:hover .dim {
+        opacity: 1;
+      }
+      .rank {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        top: 0;
+        left: 0;
+        padding: 10px 0 0 15px;
+        font-size: 36px;
+        color: $white;
+        font-style: italic;
+        text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+        background: url(../assets/images/bg/bg-main-movie-rank.png) no-repeat 0 0;
+      }
+      .dim {
+        transition: .2s;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        color: $white;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        .summary {
+          padding: 16px 0;
+          flex: 1 0 0;
+          border-bottom: 1px solid #3c3c3c;
+          overflow-y: scroll;
+        }
+        .rating {
+          padding: 12px 0;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          font-size: 14px;
+          & > span {
+            font-size: 32px;
+            color: #59bec9;
+          }
+        }
+      }
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .btn-set {
+      margin-top: 12px;
+      display: flex;
+      width: 100%;
+      gap: 4px;
+      .btn.-like {
+        width: 35%;
+      }
+      .btn.-reservation {
+        width: 65%;
+      }
+      
+    }
+  }
+  &.-book-movie-list {
+    & > button {
+      padding: 4px;
+      width: 100%;
+      font-size: 13px;
+      text-align: left;
+      &:disabled {
+        background-color: gray;
+        color: $white;
+      }
+    }
+  }
+  &.-book-movie-time-list {
+    
+  }
+}

@@ -1,0 +1,217 @@
+#header {
+  background-color: black;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  & > .wrap {
+    position: relative;
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      aspect-ratio: 140/47;
+    }
+    .header-left {
+      height: 100%;
+      .link-left {
+        & > ul {
+          display: flex;
+          gap: 20px;
+          & > li {
+            & > a {
+              color: #888;
+              font-size: 12px;
+              font-weight: 500;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .gnb-left {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 48px;
+        padding-top: 10px;
+        .gnb-icon {
+          display: flex;
+          gap: 8px;
+        }
+        .gnb {
+          display: flex;
+          height: 100%;
+          align-items: center;
+          & > li {
+            position: relative;
+            height: 100%;
+            &:hover {
+              .sub-menu {
+                height: auto;
+                overflow: visible;
+              }
+            }
+            & > a {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              font-size: 20px;
+              color: $white;
+              font-weight: 500;
+              padding: 0 16px;
+            }
+            .sub-menu {
+              position: absolute;
+              display: flex;
+              height: 0;
+              overflow: hidden;
+              gap: 12px;
+              transform: translateX(-50%);
+              left: 50%;
+              width: max-content;
+              & > li {
+                & > a {
+                  display: block;
+                  padding: 8px 0;
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .header-right {
+      height: 100%;
+      .link-right {
+        right: 0;
+        & > ul {
+          justify-content: flex-end;
+          display: flex;
+          gap: 20px;
+          & > li {
+            & > a {
+              color: #888;
+              font-size: 12px;
+              font-weight: 500;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .gnb-right {
+        padding-top: 10px;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 48px;
+        & > ul {
+          display: flex;
+        }
+        .gnb {
+          display: flex;
+          height: 100%;
+          & > li {
+            height: 100%;
+            & > a {
+              height: 100%;
+              padding: 0 16px;
+              display: flex;
+              align-items: center;
+              font-size: 20px;
+              color: $white;
+              font-weight: 500;
+            }
+          }
+        }
+        .gnb-icon {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+      }
+    }
+  }
+  .link-left,.link-right{
+    z-index: 1;
+    position: absolute;
+    top: 8px;
+  }
+}
+
+.container {
+  .section1 {
+    height:  calc(100vh - 100px);
+    background-color: black;
+    .content {
+      width: 1200px;
+      margin: 0 auto;
+    }
+  }
+}
+
+#footer {
+  background-color: #f8f8fa;
+  .wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    width: 1200px;
+    margin: 0 auto;
+    .footer-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .fnb {
+        display: flex;
+        gap: 12px;
+        & > li {
+          & > a {
+            font-size: 12px;
+            color: #666;
+            font-weight: bold;
+          }
+        }
+      }
+      & > button {
+        border: 1px solid #d8d9db;
+        border-radius: 30px;
+        display: flex;
+        gap: 8px;
+        padding: 6px 12px;
+        color: #666;
+      }
+    }
+    .footer-bottom {
+      width: 100%;
+      margin-top: 24px;
+      display: flex;
+      gap: 16px;
+      .footer-logo {
+        width: 150px;
+      }
+      .footer-info {
+        flex: 1 0 0;
+        & > p {
+          font-size: 12px;
+          color: #444;
+        }
+      }
+      .footer-sns {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+    }
+  }
+}

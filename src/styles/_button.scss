@@ -1,0 +1,33 @@
+.btn {
+  &.-login{
+    width: 100%;
+    height: 46px;
+    background-color: $point-color;
+    border-radius: 4px;
+    color: $white;
+    padding: 0px 30px;
+    font-size: 15px;
+    &:disabled {
+      background-color: #e0e0e0;
+      color: #777;
+      cursor: default;
+      border-color: #e0e0e0;
+    }
+  }
+  &.-like {
+    display: flex;
+    color: $white;
+    gap: 8px;
+    border: 1px solid #555;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    padding: 8px 16px;
+    justify-content: center;
+  }
+  &.-reservation {
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: $white;
+    background-color: #037b94;
+  }
+}

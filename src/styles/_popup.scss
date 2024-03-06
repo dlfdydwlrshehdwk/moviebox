@@ -1,0 +1,73 @@
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  &.-login {
+    background-color: $white;
+    width: 850px;
+    // height: 484px;
+    border: 1px solid #000;
+    .popup-header {
+      padding: 8px 16px;
+      background-color: $point-color;
+      display: flex;
+      justify-content: space-between;
+      color: $white;
+    }
+    .popup-content {
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      .content-left {
+        .input-set + .input-set {
+          margin-top: 16px;
+        }
+        .chk-set {
+          margin-top: 16px;
+        }
+        .btn {
+          margin-top: 32px;
+        }
+        .link {
+          display: flex;
+          justify-content: center;
+          margin-top: 16px;
+          gap: 32px;
+          & > li {
+            position: relative;
+            & > a {
+              font-size: 14px;
+              color: #666;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+          & > li + li::before{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 100%;
+            background-color: black;
+            top: 0;
+            left: -16px;
+            width: 1px;
+          }
+        }
+        .social-login {
+          margin-top: 16px;
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+        }
+      }
+      .content-right {
+        .ad {
+          height: 380px;
+          border: 1px solid #000;
+        }
+      }
+    }
+  }
+}
