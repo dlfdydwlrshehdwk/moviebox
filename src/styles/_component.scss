@@ -92,6 +92,146 @@
     }
   }
   &.-book-movie-time-list {
-    
+    & > button {
+      text-align: left;
+      display: flex;
+      width: 100%;
+      padding: 0 10px;
+      .discount {
+        text-align: center;
+        padding: 8px 0;
+        width: 20px;
+      }
+      .screen-time {
+        padding: 8px 12px;
+        width: 60px;
+        .start-time {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .end-time {
+          font-size: 13px;
+          color: #666;
+          margin-top: 4px;
+        }
+      }
+      .movie {
+        flex: 1 0 0;
+        padding: 8px 12px;
+        .movie-name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .screen {
+          font-size: 12px;
+          margin-top: 6px;
+        }
+      }
+      .theater-info {
+        font-size: 12px;
+        text-align: right;
+        .theater-num {
+          flex: 1 0 0;
+        }
+        .seat {
+          width: fit-content;
+          margin: 0 0 0 auto;
+          width: fit-content;
+          border: 1px solid #d8d9db;
+          padding: 3px 6px;
+          color: #666;
+          .remain-seat {
+            color: #01738b;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    & + .-book-movie-time-list {
+      border-top: 1px solid #ebebeb;
+    }
+    &:hover {
+      background-color: #ebebeb;
+    }
+  }
+  &.-breadcrumb {
+    background-color: #f8f8fa;
+    & > ul {
+      width: 1200px;
+      margin: 0 auto;
+      height: 40px;
+      display: flex;
+      gap: 10px;
+      & > li {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        & > a {
+          display: block;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          color: $font-666;
+          & > i {
+            height: 100%;
+            display: flex;
+            align-items: center;
+          }
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  &.-movie-reservation {
+    background-color: $white;
+    border: 1px solid gold;
+    .wrap {
+      width: 1200px;
+      margin: 0 auto;
+      border: 1px solid plum;
+      .title {
+        font-weight: 500;
+        font-size: 28px;
+        color: $font-222;
+      }
+      .content {
+        margin-top: 24px;
+        .slick-slider {
+          width: 1100px;
+          border: 1px solid aqua;
+          text-align: center;
+          display: flex;
+          .slick-prev,.slick-next {
+            position: static;
+            transform: none;
+            background-color: white;
+            color: red;
+            &::before {
+            color: black;
+            background-color: white;
+            opacity: 1;
+            line-height: normal;
+            font-size: 0;
+            display: block;
+            width: 25px;
+            }
+          }
+          .slick-prev {
+            &::before {
+              background: url('../assets/images/btn/btn-benefit-slider-prev.png');
+            }
+          }
+          .slick-next {
+            &::before {
+              content: url('../assets/images/btn/btn-benefit-slider-next.png');
+            }
+          }
+        }
+      }
+    }
   }
 }

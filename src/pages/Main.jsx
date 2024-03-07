@@ -4,7 +4,7 @@ import Login from "../components/popup/Login";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import MainPoster from "../components/component/MainPoster";
-import { IconBoxOffice, IconIconTicket, IconMoreGray, IconSchedule, IconSearch, IconTicket } from "../components/icon/Icons";
+import { IconBoxOffice, IconMoreGray, IconSchedule, IconSearch, IconTicket } from "../components/icon/Icons";
 import IconButton from "../components/button/IconButton";
 
 const Main = () => {
@@ -22,7 +22,7 @@ const Main = () => {
 
   return (
     <>
-    <Header handler={handler}/>
+    <Header handler={handler} whiteMode={false}/>
     <div className="container">
       <div className="section1">
         <div className="content">
@@ -74,7 +74,6 @@ const Main = () => {
         />
       </Dim>
     }
-    <Footer />
     </>
   )
 }

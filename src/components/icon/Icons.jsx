@@ -1,13 +1,18 @@
 import headerLogo from '../../assets/images/logo/logo-white_new2.png'
+import mainLogo from '../../assets/images/logo/logo_main.png'
 import footerLogo from '../../assets/images/logo/logo-opacity_new2.png'
 import iconWhtClose from '../../assets/images/btn/btn-layer-close.png'
 import iconNaver from '../../assets/images/icon/ico-naver.png'
 import iconKaKao from '../../assets/images/icon/ico-kakao.png'
 import iconPayco from '../../assets/images/icon/ico-payco.png'
 import iconSearch from '../../assets/images/icon/ico-search-white.png'
+import iconSearchBlk from '../../assets/images/icon/ico-search-blk.png'
 import iconSitemap from '../../assets/images/icon/ico-sitemap-white.png'
+import iconSitemapBlk from '../../assets/images/icon/ico-sitemap-blk.png'
 import iconSchedule from '../../assets/images/icon/ico-schedule-white.png'
+import iconScheduleBlk from '../../assets/images/icon/ico-schedule-blk.png'
 import iconAdmin from '../../assets/images/icon/ico-mymega-white.png'
+import iconAdminBlk from '../../assets/images/icon/ico-mymega-blk.png'
 import iconYoutube from '../../assets/images/icon/ico-youtubeN.png'
 import iconInstagram from '../../assets/images/icon/ico-instagramN.png'
 import iconFacebook from '../../assets/images/icon/ico-facebookN.png'
@@ -21,10 +26,22 @@ import iconAgeLimit15 from '../../assets/images/icon/15_40x40.png'
 import iconAgeLimit18 from '../../assets/images/icon/18_40x40.png'
 import iconAgeLimitAll from '../../assets/images/icon/ALL_40x40.png'
 import iconAgeLimitNone from '../../assets/images/icon/none_40x40.png'
+import iconSun from '../../assets/images/icon/ico-sun.png'
+import iconBrunch from '../../assets/images/icon/ico-brunch.png'
+import iconMoon from '../../assets/images/icon/ico-moon.png'
+import iconHome from '../../assets/images/icon/ico-home.png'
+import iconArrRight from '../../assets/images/btn/btn-specialtheater-next.png'
+
 
 const HeaderLogo = ({style}) => {
   return (
     <img style={style} src={headerLogo} alt="" />
+  )
+}
+
+const MainLogo = ({style}) => {
+  return (
+    <img style={style} src={mainLogo} alt="" />
   )
 }
 const FooterLogo = ({style}) => {
@@ -57,9 +74,19 @@ const IconSearch = ({style}) => {
     <img style={style} src={iconSearch} alt="" />
   )
 }
+const IconSearchBlk = ({style}) => {
+  return (
+    <img style={style} src={iconSearchBlk} alt="" />
+  )
+}
 const IconSitemap = ({style}) => {
   return (
     <img style={style} src={iconSitemap} alt="" />
+  )
+}
+const IconSitemapBlk = ({style}) => {
+  return (
+    <img style={style} src={iconSitemapBlk} alt="" />
   )
 }
 const IconSchedule = ({style}) => {
@@ -67,9 +94,19 @@ const IconSchedule = ({style}) => {
     <img style={style} src={iconSchedule} alt="" />
   )
 }
+const IconScheduleBlk = ({style}) => {
+  return (
+    <img style={style} src={iconScheduleBlk} alt="" />
+  )
+}
 const IconAdmin = ({style}) => {
   return (
     <img style={style} src={iconAdmin} alt="" />
+  )
+}
+const IconAdminBlk = ({style}) => {
+  return (
+    <img style={style} src={iconAdminBlk} alt="" />
   )
 }
 const IconYoutubeGray = ({style}) => {
@@ -132,6 +169,31 @@ const IconAgeLimitNone = ({style}) => {
     <img style={style} src={iconAgeLimitNone} alt="" />
   )
 }
+const IconSun = ({style}) => {
+  return (
+    <img style={style} src={iconSun} alt="" />
+  )
+}
+const IconMoon = ({style}) => {
+  return (
+    <img style={style} src={iconMoon} alt="" />
+  )
+}
+const IconBrunch = ({style}) => {
+  return (
+    <img style={style} src={iconBrunch} alt="" />
+  )
+}
+const IconHome = ({style}) => {
+  return (
+    <img style={style} src={iconHome} alt="" />
+  )
+}
+const IconArrRight = ({style}) => {
+  return (
+    <img style={style} src={iconArrRight} alt="" />
+  )
+}
 const IconHeartToggle = ({style,like}) => {
   return (
     <div style={{overflow:'hidden',width:'17px',...style}}>
@@ -153,6 +215,7 @@ export {
   IconNaver,
   IconPayco,
   HeaderLogo,
+  MainLogo,
   FooterLogo,
   IconSearch,
   IconSitemap,
@@ -171,4 +234,13 @@ export {
   IconAgeLimit18,
   IconAgeLimitAll,
   IconAgeLimitNone,
+  IconSun,
+  IconMoon,
+  IconBrunch,
+  IconSearchBlk,
+  IconSitemapBlk,
+  IconScheduleBlk,
+  IconAdminBlk,
+  IconHome,
+  IconArrRight,
 }

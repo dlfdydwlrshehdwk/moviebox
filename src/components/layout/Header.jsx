@@ -1,7 +1,10 @@
 import IconButton from '../button/IconButton'
-import { HeaderLogo, IconAdmin, IconSchedule, IconSearch, IconSitemap } from '../icon/Icons'
-
-const Header = ({handler}) => {
+import { HeaderLogo, IconAdmin, IconAdminBlk, IconSchedule, IconScheduleBlk, IconSearch, IconSearchBlk, IconSitemap, IconSitemapBlk, MainLogo } from '../icon/Icons'
+import classNames from 'classnames'
+const Header = ({
+  handler,
+  whiteMode=true
+}) => {
 
   const dimOn = (e) => {
     if(e.target.getAttribute('href') == "" || e.target.getAttribute('href') == "#") {
@@ -9,8 +12,9 @@ const Header = ({handler}) => {
       handler.dimOn()
     }
   }
+
   return (
-    <header id="header">
+    <header id="header" className={classNames({'white' : whiteMode})}>
       <div className="wrap">
       <div className="header-left">
         <div className="link-left">
@@ -30,12 +34,16 @@ const Header = ({handler}) => {
           <ul className='gnb-icon'>
             <li>
               <IconButton>
-                <IconSitemap />
+                {
+                  whiteMode ? <IconSitemapBlk /> : <IconSitemap />
+                }
               </IconButton>
             </li>
             <li>
               <IconButton>
-                <IconSearch />
+                {
+                  whiteMode ? <IconSearchBlk /> : <IconSearch />
+                }
               </IconButton>
             </li>
           </ul>
@@ -84,7 +92,9 @@ const Header = ({handler}) => {
       </div>
       <h1 className="logo">
         <a href="">
-          <HeaderLogo />
+          {
+            whiteMode ? <MainLogo /> : <HeaderLogo />
+          }
         </a>
       </h1>
       <div className="header-right">
@@ -116,12 +126,16 @@ const Header = ({handler}) => {
           <ul className='gnb-icon'>
             <li>
               <IconButton>
-                <IconSchedule />
+                {
+                  whiteMode ? <IconScheduleBlk /> :  <IconSchedule />
+                }
               </IconButton>
             </li>
             <li>
               <IconButton>
-                <IconAdmin />
+                {
+                  whiteMode ? <IconAdminBlk /> : <IconAdmin />
+                }
               </IconButton>
             </li>
           </ul>

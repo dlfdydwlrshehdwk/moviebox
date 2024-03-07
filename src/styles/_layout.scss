@@ -140,6 +140,59 @@
       }
     }
   }
+  &.white {
+    background-color: $white;
+    border-bottom: 1px solid $black;
+    & > .wrap {
+      .header-left {
+        .link-left {
+          & > ul {
+            & > li {
+              & > a {
+                color: #888;
+              }
+            }
+          }
+        }
+        .gnb-left {
+          .gnb {
+            & > li {
+              & > a {
+                color: $black;
+              }
+              .sub-menu {
+                & > li {
+                  & > a {
+                    color: $black;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .header-right {
+        .link-right {
+          & > ul {
+            & > li {
+              & > a {
+                color: #888;
+              }
+            }
+          }
+        }
+        .gnb-right {
+          .gnb {
+            & > li {
+              & > a {
+                color: $black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .link-left,.link-right{
     z-index: 1;
     position: absolute;
