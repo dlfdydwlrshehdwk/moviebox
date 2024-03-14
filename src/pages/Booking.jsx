@@ -344,12 +344,9 @@ const Booking = ({handler}) => {
                           {
                             theaterData.map((x,i) => {
                               return (
-                                // <li key={i}><button onClick={()=>setCity(i)}>{x.city}</button></li>
-                                <li key={i}>
-                                  <button
-                                  className={classNames({'-active' : cityArr[i]})}
-                                  onClick={()=>{chooseCity(i)}}>{x.city}</button>
-                                 </li>
+                                <li key={i} className={classNames({'-active' : cityArr[i]})}>
+                                  <button onClick={()=>{chooseCity(i)}}>{x.city}</button>
+                                </li>
                               )
                             })
                           }

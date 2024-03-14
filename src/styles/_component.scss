@@ -292,7 +292,7 @@
               }
             }
           }
-          .content-main {
+          & > .content-main {
             display: flex;
             border: 1px solid #d8d9db;
             & > div + div {
@@ -350,8 +350,8 @@
                 .city,.place {
                   width: 50%;
                   & > li {
-                    padding: 3px 8px;
                     & > button {
+                      padding: 3px 8px;
                       width: 100%;
                       text-align-last: left;
                     }
@@ -371,6 +371,13 @@
                   &::-webkit-scrollbar-track {
                     background: #ebebeb;
                     border-radius: 10px;
+                  }
+                }
+                .city {
+                  & > li {
+                    &.-active {
+                      background-color: #ebebeb;
+                    }
                   }
                 }
               }
