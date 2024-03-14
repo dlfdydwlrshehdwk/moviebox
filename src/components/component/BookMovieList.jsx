@@ -1,13 +1,18 @@
+import classNames from "classnames"
 import { IconAgeLimit12, IconAgeLimit15, IconAgeLimit18, IconAgeLimitAll, IconAgeLimitNone } from "../icon/Icons"
 
 const BookMovieList = ({
   age,
   movieName,
-  disabled
+  disabled,
+  active,
+  className,
+  onClick = () => {},
 }) => {
   return (
-    <li className="component -book-movie-list">
-      <button disabled={disabled}>
+    <li className={classNames("component -book-movie-list",{className,'-active' : active})}>
+      <button disabled={disabled} onClick={onClick}>
+        <span>
         {
           age == 12 ?
           <IconAgeLimit12 style={{width : '20px'}}/> :
@@ -17,11 +22,12 @@ const BookMovieList = ({
           <IconAgeLimit18 style={{width : '20px'}}/> :
           age == 'none' ? 
           <IconAgeLimitNone style={{width : '20px'}}/> :
-          age == 'All' ? 
+          age == 'all' ? 
           <IconAgeLimitAll style={{width : '20px'}}/> :
           null
         }
-        {movieName}
+        </span>
+        <span>{movieName}</span>
       </button>
     </li>
   )

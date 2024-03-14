@@ -85,7 +85,14 @@
       width: 100%;
       font-size: 13px;
       text-align: left;
+      display: flex;
+      gap: 4px;
       &:disabled {
+        opacity: .5;
+      }
+    }
+    &.-active {
+      & > button {
         background-color: gray;
         color: $white;
       }
@@ -188,50 +195,378 @@
   }
   &.-movie-reservation {
     background-color: $white;
-    border: 1px solid gold;
-    .wrap {
+    & > .wrap {
       width: 1200px;
       margin: 0 auto;
-      border: 1px solid plum;
+      padding: 40px 0;
       .title {
         font-weight: 500;
         font-size: 28px;
         color: $font-222;
       }
+      .sub-title {
+        font-weight: 500;
+        font-size: 16px;
+        color: $font-222;
+      }
       .content {
         margin-top: 24px;
-        .slick-slider {
-          width: 1100px;
-          border: 1px solid aqua;
-          text-align: center;
-          display: flex;
-          .slick-prev,.slick-next {
-            position: static;
-            transform: none;
-            background-color: white;
-            color: red;
-            &::before {
-            color: black;
-            background-color: white;
-            opacity: 1;
-            line-height: normal;
-            font-size: 0;
-            display: block;
-            width: 25px;
+        &.-seat {
+          .content-top {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #000;
+            padding: 8px 0;
+          }
+          .content-main {
+            border: 1px solid #d8d9db;
+            .seat-count {
+              padding: 12px 24px;
+              display: flex;
+              background-color: #f2f4f5;
+              .-seat-count {
+                width: 25%;
+              }
             }
           }
-          .slick-prev {
-            &::before {
-              background: url('../assets/images/btn/btn-benefit-slider-prev.png');
+        }
+        &.-movie {
+          & > .content-top {
+            border-top: 1px solid #555;
+            border-left: 1px solid #d8d9db;
+            border-right: 1px solid #d8d9db;
+            .slick-slider {
+              // width: 1100px;
+              width: 100%;
+              text-align: center;
+              display: flex;
+              .slick-list {
+                width: 100%;
+                overflow: visible;
+                overflow-x: hidden;
+                .slick-slide {
+                  cursor: pointer;
+                  .date {
+                    position: relative;
+                    padding: 4px 0;
+                    &.-sunday {
+                      color: $font-red;
+                    }
+                    &.-saturday {
+                      color: $font-blue;
+                    }
+                    &.-active {
+                      background-color: #f7f8f9;;
+                      border-bottom: 2px solid #503396;
+                    }
+                    &:hover {
+                      border-bottom: 2px solid #503396;
+                    }
+                  }
+                }
+              }
+              .slick-prev,.slick-next {
+                position: static;
+                transform: none;
+                background-color: white;
+                color: red;
+                &::before {
+                color: black;
+                background-color: white;
+                opacity: 1;
+                line-height: normal;
+                font-size: 0;
+                display: block;
+                width: 25px;
+                }
+              }
+              .slick-prev {
+                  background-image: url('../assets/images/btn/btn-benefit-slider-prev.png');
+                  background-repeat: no-repeat;
+                  background-position: center;
+              }
+              .slick-next {
+                background-image : url('../assets/images/btn/btn-benefit-slider-next.png');
+                background-repeat: no-repeat;
+                background-position: center;
+              }
             }
           }
-          .slick-next {
-            &::before {
-              content: url('../assets/images/btn/btn-benefit-slider-next.png');
+          .content-main {
+            display: flex;
+            border: 1px solid #d8d9db;
+            & > div + div {
+              border-left: 1px solid #d8d9db;
+            }
+            & >.movie-info {
+              width: 250px;
+              padding: 8px 16px 24px;
+              .movie-list {
+                height: 320px;
+                overflow-y: scroll;
+                &::-webkit-scrollbar{
+                  width: 6px;
+                }
+                &::-webkit-scrollbar-thumb {
+                  height: 30%;
+                  background-color: $point-color;
+                  border-radius: 10px;
+                }
+                &::-webkit-scrollbar-track {
+                  background: #ebebeb;
+                  border-radius: 10px;
+                }
+  
+              }
+              .choose-movie {
+                & .no-choose {
+                  text-align: center;
+                  height: 90px;
+                  border: 1px solid #ebebeb;
+                  background-color: $white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 13px;
+                }
+              }
+            }
+            & > .theater-info {
+              width: 400px;
+              padding: 8px 16px 24px;
+              .theater-list {
+                position: relative;
+                display: flex;
+                height: 320px;
+                overflow: hidden;
+                &::before {
+                  content: '';
+                  position: absolute;
+                  width: 1px;
+                  height: 100%;
+                  left: 50%;
+                  background-color: #ecf0f4;
+                }
+                .city,.place {
+                  width: 50%;
+                  & > li {
+                    padding: 3px 8px;
+                    & > button {
+                      width: 100%;
+                      text-align-last: left;
+                    }
+                  }
+                }
+                .place {
+                  overflow-y: scroll;
+                  height: 100%;
+                  &::-webkit-scrollbar{
+                    width: 6px;
+                  }
+                  &::-webkit-scrollbar-thumb {
+                    height: 30%;
+                    background-color: $point-color;
+                    border-radius: 10px;
+                  }
+                  &::-webkit-scrollbar-track {
+                    background: #ebebeb;
+                    border-radius: 10px;
+                  }
+                }
+              }
+              .choose-theater {
+                & .no-choose {
+                  text-align: center;
+                  height: 90px;
+                  border: 1px solid #ebebeb;
+                  background-color: $white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 13px;
+                }
+              }
+              
+              
+            }
+            & > .movie-time {
+              padding: 8px 0px 24px;
+              flex: 1 0 0;
+              overflow: hidden;
+              .wrap {
+                .content-top {
+                  display: flex;
+                  padding: 0 16px;
+                  justify-content: space-between;
+                  .discount {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 12px;
+                    & > div {
+                      display: flex;
+                      gap: 2px;
+                      align-items: center;
+                    }
+                 }
+                }
+                .choose-time {
+                  padding: 4px 42px;
+                  border-top: 1px solid #ebebeb;
+                  border-bottom: 1px solid #ebebeb;
+                  .slick-slider {
+                    display: flex;
+                    align-items: center;
+                    .slick-list {
+                      flex: 1 0 0;
+                      text-align: center;
+                    }
+                    .slick-arrow {
+                      position: static;
+                      width: 20px;
+                      transform: none;
+                      &::before {
+                        display: none;
+                      }
+                    }
+                    .slick-prev {
+                      background-image: url('../assets/images/btn/btn-benefit-slider-prev.png');
+                      background-repeat: no-repeat;
+                      background-position: center;
+                    }
+                    .slick-next {
+                      background-image : url('../assets/images/btn/btn-benefit-slider-next.png');
+                      background-repeat: no-repeat;
+                      background-position: center;
+                    }
+                  }
+                }
+                .movie-list {
+                  height: 430px;
+                  overflow-y: scroll;
+                  &::-webkit-scrollbar{
+                    width: 6px;
+                  }
+                  &::-webkit-scrollbar-thumb {
+                    height: 30%;
+                    background-color: $point-color;
+                    border-radius: 10px;
+                  }
+                  &::-webkit-scrollbar-track {
+                    background: #ebebeb;
+                    border-radius: 10px;
+                  }
+                }
+              }
             }
           }
         }
       }
+
+    }
+  }
+  &.-tabs {
+    display: flex;
+    align-items: center;
+    & > .tab {
+      cursor: pointer;
+      padding: 4px 0px;
+      text-align: center;
+      width: 50%;
+      font-size: 13px;
+      color: $font-222;
+      border-top: 1px solid #d9d8dd;
+      border-bottom: 1px solid #222;
+      &:nth-child(1) {
+        border-left: 1px solid #d9d8dd;
+      }
+      & + .tab {
+        border-right: 1px solid #d9d8dd;
+      }
+      &.-active {
+        border: 1px solid #222;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+  &.-seat-button {
+    width: 20px;
+    aspect-ratio: 1/1;
+    border: 1px solid #02bfd3;
+    color: $white;
+    font-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    & + .-seat-button {
+      border-left: none;
+    }
+    &.-common {
+      background-image: url(../assets/images/bg/bg-seat-condition-common.png);
+    }
+    &.-finish {
+      background-image: url(../assets/images/bg/bg-seat-condition-finish.png);
+    }
+    &.-impossible {
+      background-image: url(../assets/images/bg/bg-seat-condition-impossible-s.png);
+    }
+    &.-disable {
+      background-image: url(../assets/images/bg/bg-seat-condition-disabled.png);
+    }
+    &.-choice {
+      background-image: url(../assets/images/bg/bg-seat-condition-choice.png);
+    }
+    &.-space {
+      border: none;
+      & + .-seat-button.-space {
+        border-left: none;
+      }
+      & + .-seat-button {
+        border-left: 1px solid #02bfd3;
+      }
+    }
+    &.-alphabet {
+      font-size: 14px;
+      color: $font-222;
+      border: 1px solid $font-222;
+    }
+  }
+  &.-seat-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .count {
+      width: 110px;
+      height: 32px;
+      border: 1px solid $border-ccc;
+      border-radius: 4px;
+      display: flex;
+      background-color: $white;
+      .minus,.plus {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .total {
+        width: 40%;
+        height: 100%;
+        border-left: 1px solid $border-ccc;
+        border-right: 1px solid $border-ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  &.-seat-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .row {
+      display: flex;
     }
   }
 }

@@ -11,12 +11,13 @@ const BookMovieTimeList = ({
   remainSeat="232",
   allSeat="232",
   discount="",
+  onClick,
 }) => {
 
   return (
     <>
       <li className="component -book-movie-time-list">
-        <button>
+        <button onClick={onClick}>
           <div className="discount">
             {discount === "sun" && <IconSun style={{width : '14px'}}/>}
             {discount === "moon" && <IconMoon style={{width : '14px'}}/>}

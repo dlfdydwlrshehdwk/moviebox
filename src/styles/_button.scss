@@ -30,4 +30,15 @@
     color: $white;
     background-color: #037b94;
   }
+  &.-reset {
+    padding: 4px 8px;
+    color: $font-444;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    background-color: $white;
+    &:hover {
+      border-color: #666;
+      background-color: #f2f4f8;
+    }
+  }
 }

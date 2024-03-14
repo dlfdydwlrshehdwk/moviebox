@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import Dim from "../components/dim/Dim";
-import Login from "../components/popup/Login";
-import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import MainPoster from "../components/component/MainPoster";
 import { IconBoxOffice, IconMoreGray, IconSchedule, IconSearch, IconTicket } from "../components/icon/Icons";
@@ -9,20 +6,13 @@ import IconButton from "../components/button/IconButton";
 
 const Main = () => {
 
-  let [dim, setDim] = useState(false)
-  
-  const handler = {
-    dimOn : () => setDim(true),
-    dimOff : () => setDim(false)
-  }
-
   useEffect(()=>{
     console.log('hi')
   },[]) // 한번만 실행하기위해 []처리
 
   return (
     <>
-    <Header handler={handler} whiteMode={false}/>
+    {/* <Header whiteMode={false}/> */}
     <div className="container">
       <div className="section1">
         <div className="content">
@@ -66,14 +56,6 @@ const Main = () => {
         </div>
       </div>
     </div>
-    {
-      dim &&
-      <Dim>
-        <Login 
-        closeClick={handler.dimOff}
-        />
-      </Dim>
-    }
     </>
   )
 }

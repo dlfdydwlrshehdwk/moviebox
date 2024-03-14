@@ -1,19 +1,36 @@
+import { useEffect, useState } from 'react'
 import IconButton from '../button/IconButton'
 import { HeaderLogo, IconAdmin, IconAdminBlk, IconSchedule, IconScheduleBlk, IconSearch, IconSearchBlk, IconSitemap, IconSitemapBlk, MainLogo } from '../icon/Icons'
 import classNames from 'classnames'
+import Dim from '../dim/Dim'
+import Login from '../popup/Login'
 const Header = ({
   handler,
-  whiteMode=true
+  whiteMode
 }) => {
 
   const dimOn = (e) => {
-    if(e.target.getAttribute('href') == "" || e.target.getAttribute('href') == "#") {
-      e.preventDefault();
-      handler.dimOn()
-    }
+    e.preventDefault();
+    console.log(e)
+    console.log(handler)
+      handler.showLoginPopup()
   }
 
+  useEffect(()=>{
+    let a = document.querySelectorAll('.gnb-left .gnb > li')
+    let header = document.getElementById('header')
+    a.forEach((x)=>{
+      x.addEventListener('mouseover',() => {
+        header.classList.add('-sub-bg')
+      } )
+      x.addEventListener('mouseleave',() => {
+        header.classList.remove('-sub-bg')
+      })
+    })
+  },[])
+
   return (
+    <>
     <header id="header" className={classNames({'white' : whiteMode})}>
       <div className="wrap">
       <div className="header-left">
@@ -101,7 +118,7 @@ const Header = ({
         <div className="link-right">
         <ul className='gnb'>
             <li>
-              <a href="" onClick={dimOn}>로그인</a>
+              <a href="" onClick={(e)=>{dimOn(e)}}>로그인</a>
             </li>
             <li>
               <a href="">회원가입</a>
@@ -143,6 +160,7 @@ const Header = ({
       </div>
       </div>
     </header>
+    </>
   )
 }
 

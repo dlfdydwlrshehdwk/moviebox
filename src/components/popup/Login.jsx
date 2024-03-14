@@ -3,15 +3,15 @@ import { IconKaKao, IconNaver, IconPayco, IconWhtClose } from "../icon/Icons";
 import InputText from "../input/InputText";
 
 const Login = ({
-
-  closeClick = () => {}
+  handler,
 }) => {
   return (
     <>
       <div className="popup -login">
         <div className="popup-header">
           <div>로그인</div>
-          <IconButton onClick={closeClick}>
+          {/* 로그아웃 */}
+          <IconButton onClick={handler.hideLoginPopup}> 
             <IconWhtClose />
           </IconButton>
         </div>
@@ -57,7 +57,7 @@ const Login = ({
 
           </div>
           <div className="content-right w-50">
-            <div className="ad">광고
+            <div className="ad">AD
               <div className="img-set">
                 <img src="" alt="" />
               </div>

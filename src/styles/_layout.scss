@@ -1,10 +1,12 @@
 #header {
+  position: relative;
   background-color: black;
   border-bottom: 1px solid rgba(255, 255, 255, .2);
+  height: 100px;
   & > .wrap {
     position: relative;
     width: 1200px;
-    height: 100px;
+    height: 100%;
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -75,10 +77,12 @@
               transform: translateX(-50%);
               left: 50%;
               width: max-content;
+              z-index: 1;
               & > li {
                 & > a {
-                  display: block;
-                  padding: 8px 0;
+                  display: flex;
+                  align-items: center;
+                  height: 40px;
                   color: $white;
                 }
               }
@@ -143,6 +147,17 @@
   &.white {
     background-color: $white;
     border-bottom: 1px solid $black;
+    &.-sub-bg {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #339eb2;
+        height: 40px;
+        width: 100%;
+      }
+    }
     & > .wrap {
       .header-left {
         .link-left {
@@ -163,7 +178,10 @@
               .sub-menu {
                 & > li {
                   & > a {
-                    color: $black;
+                    color: $white;
+                    &:hover {
+                      text-decoration: underline;
+                    }
                   }
                 }
               }

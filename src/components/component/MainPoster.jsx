@@ -1,8 +1,7 @@
 import { IconHeartToggle } from "../icon/Icons"
-import poster1 from '../../assets/images/poster/1mWswToaptfGBNRRAiSSleat3ajWwnd4_420.jpg'
 
 const MainPoster = ({
-  imgSrc = poster1,
+  imgSrc,
   like="2.9k",
   rank = "숫자",
   rating="점수",
