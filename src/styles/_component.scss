@@ -372,6 +372,14 @@
                     background: #ebebeb;
                     border-radius: 10px;
                   }
+                  & > li {
+                    &.-active {
+                      background-color: #666;
+                      & > button {
+                        color : $white;
+                      }
+                    }
+                  }
                 }
                 .city {
                   & > li {

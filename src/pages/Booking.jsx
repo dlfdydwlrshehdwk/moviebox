@@ -25,19 +25,21 @@ const Booking = ({handler}) => {
   let [ready,setReady] = useState(false) // 영화,극장,시간 다 고르면 true
   let maxMovieLength = 2; // 영화고르는거 개수제한
   let maxTheaterLength = 2; // 극장고르는거 개수제한
-  let [movieName,setMovieName] = useState('') // 영화제목 누른거 데이터
   let [totalMovie,setTotalMovie] = useState(0) // 고른 영화수 
-  let [movieArr,setMovieArr] = useState([]) 
-  let [city,setCity] = useState() // 도시선택 누른거 데이터
-  let [theater,setTeater] = useState('') // 극장 누른거 데이터
+  let [totalTheater,setTotalTheater] = useState(0) // 고른 극장수
+  let [movieArr,setMovieArr] = useState([])  // 영화 누른거 배열
   let [cityArr,setCityArr] = useState([]) // 도시 누른거 배열
+  let [movieName,setMovieName] = useState('') // 영화 누른거 데이터
   let [theaterArr,setTheaterArr] = useState([]) // 극장 누른거 배열
-  let [screenTime,setScreenTime] = useState('') // 시간 누른거 데이터
+  let [city,setCity] = useState() // 도시 누른거 데이터
+  let [theater,setTheater] = useState('') // 극장 누른거 데이터
+  let [screenTime,setScreenTime] = useState([]) // 시간 영화리스트 배열
+  let [chooseData, setChooseData] = useState()
   let [viewer,setViewer] = useState([0,0,0,0]) // 관람인원 4분류
   let [totalViewer,setTotalViewer] = useState(0) // 관람인원 총합
   let [nowViewer,setNowViewer] = useState(0) // 누른 관람인원 
   let [chooseSeat,setChooseSeat] = useState([]) // 좌석배치도 boolean
-
+  
   const slidePerView = 14 // 최대 14일 전까지 예매가능
   const slickSettings = { // 슬릭 api셋팅
     // dots : true,
@@ -66,22 +68,54 @@ const Booking = ({handler}) => {
     ready : () => setReady(true),
     notReady : () => setReady(false)
   }
-
-  const showMovieScreenTime = () => { // 극장 - 2depth 누르면 시간에 영화목록 보여주는 이벤트
-
+  const showMovieScreenTime = (movie,theater) => { // 극장 누르면 시간에 영화목록 보여주는 이벤트
+    let arr = []
+    // 여기서 시간 탭에서 보여줄 영화리스트를 조작해야함.
+    // 영화를 고른게 있다면...
+    if(movieName !== ''){
+      data.forEach(x => {
+        if(x.movieName === movie) {
+          arr.push(x.screen)
+        }
+      })
+    } else { // 없다면... 배열에 영화 스크린타임 다 넣어버림 하나로 해서
+      data.forEach((x,i) => { // 스크린타임 하나로 합치는 작업
+        x.screen.forEach(q => {
+          arr.push({name : x.movieName,...q})
+        })
+      })
+      // 스크린타임 하나로 합친 배열 시간순으로 정렬
+      arr = arr.sort((a,b) => {
+        return a.start.replace(':',"") - b.start.replace(':',"")
+      })
+      // 이렇게 줄여 쓰기 가능
+      // arr = arr.sort((a,b) => a.start.replace(':',"") - b.start.replace(':',""))
+    }
+    setScreenTime(arr)
+    setReady(true)
   }
   const chooseMovie = (data,i) => { // 영화선택시
-    if(maxMovieLength < totalMovie) {
+    if(maxMovieLength < totalMovie) { // 고른영화수가 3가지를 넘어갈때 조건처리
       if(movieArr[i] === false){
         alert('최대 3개까지 선택가능합니다.')
         return
       } 
     }
-    let copy = [...movieArr]
-    copy[i] = !copy[i]
-    setMovieArr(copy)
-    // setMovieName(data)
-    setTotalMovie(copy[i] == true ? totalMovie + 1 : totalMovie -1)
+    let copyMovieArr = [...movieArr]
+    let copyMovieName = [...movieName]
+    if(copyMovieArr[i]) { // 영화 - 리스트가 -active일때
+      copyMovieArr[i] = !copyMovieArr[i] // -active 토글
+      let newArr = copyMovieName.filter(x => { // 영화 누른애랑 이름같으면 영화배열에서 빼기
+        return x != data
+      })
+      setMovieName(newArr)
+    } else { // 영화 - 리스트가 -active상태가 아닐때
+      copyMovieArr[i] = !copyMovieArr[i] // -active 토글
+      copyMovieName.push(data)
+      setMovieName(copyMovieName)
+    }
+    setMovieArr(copyMovieArr)
+    setTotalMovie(copyMovieArr[i] == true ? totalMovie + 1 : totalMovie -1)
   }
   const chooseCity = (i) => { // 도시 선택시
     let arr = []
@@ -89,15 +123,34 @@ const Booking = ({handler}) => {
       arr.push(0)
     }
     arr[i] = true
+    setCity(i)
     setCityArr(arr)
   }
-  const chooseTheater = () => { // 극장 선택시
+  const chooseTheater = (i) => { // 극장 선택시
+    let copy = [...theaterArr]
+    if(copy[city][i] == false) {
+      if(totalTheater > maxTheaterLength){
+        alert(`극장은 최대 ${maxTheaterLength + 1}개까지 선택이 가능합니다.`);
+        return;
+      } else {
+        copy[city][i] = !copy[city][i]
+        setTotalTheater(totalTheater + 1)
+      }
+    } else {
+      copy[city][i] = !copy[city][i]
+      setTotalTheater(totalTheater - 1)
+    }
 
+    setTheaterArr(copy)
+    let theater = theaterData[city].theater[i] // theater 명 출력 // type:string
+    let movie = movieName
+    showMovieScreenTime(movie,theater)
   }
-  const goSelectSeat = () => { // 시간 - 리스트누르면 좌석고르는곳으로 가기 이벤트
+  const goSelectSeat = (data) => { // 시간 - 리스트누르면 좌석고르는곳으로 가기 이벤트
+    console.log('afaf',data)
     setSeatPage(true)
   }
-  const plusViewer = (index) => { // +버튼 누르면
+  const plusViewer = (index) => { // 좌석예매 + 버튼 누르면
     if(totalViewer < 8){
       let copy = [...viewer]
       copy[index] = copy[index] + 1
@@ -106,7 +159,7 @@ const Booking = ({handler}) => {
       return;
     }
   }
-  const minusViewer = (index) => { // -버튼 누르면
+  const minusViewer = (index) => { // 좌석예매 - 버튼 누르면
     // 조건. -될때 0밑으로는 내려가면안됨
     // 조건. 선택된 좌석이 있을때 선택된 좌석보다 totalViewer가 적어지면안됨
     // => 팝업으로 초기화할건지를 띄움
@@ -152,7 +205,6 @@ const Booking = ({handler}) => {
       copy[i][ii] === true ? setNowViewer(nowViewer + 1) : setNowViewer(nowViewer -1)
       setChooseSeat(copy);
     } else { // 좌석이 현재 false일시
-      // console.log(nowViewer,totalViewer)
       if(nowViewer >= totalViewer) return; 
       else {
         // 회색 -> 보라색 , 보라색 -> 회색 토글 기능
@@ -164,7 +216,6 @@ const Booking = ({handler}) => {
     }
     }
   
-
   useEffect(()=>{ // viewer건들때마다 totalViewer 값 변경
     sumViewer()
   },[viewer])
@@ -213,9 +264,9 @@ const Booking = ({handler}) => {
   useEffect(()=>{ // 극장 - 배열만들기
     let arr = [];
     for(let i = 0; i < theaterData.length; i++) {
-      arr.push(theaterData[i].theater)
+      arr.push(theaterData[i].theater.map(()=>{return false}))
     }
-    setTeater(arr)  
+    setTheaterArr(arr)  
   },[])
   useEffect(()=>{ // 영화 클릭 boolean값 담을 배열만들기
     let movieNameArr = []
@@ -225,8 +276,8 @@ const Booking = ({handler}) => {
     setMovieArr(movieNameArr)
   },[])
   useEffect(()=>{ // test
-    
-  },[nowViewer])
+    // console.log(screenTime)
+  },[screenTime])
   return (
     <>
       {/* <Header whiteMode /> */}
@@ -237,45 +288,67 @@ const Booking = ({handler}) => {
             {
               seatPage ? 
               <>
-              <div className="content -seat">
-                <div className="content-top">
-                  <div className="sub-title">관람인원선택</div>
-                  <button className="btn -reset" onClick={resetSeat}>초기화</button>
-                </div>
-                <div className="content-main">
-                  <div className="seat-count">
-                    <SeatCount plusClick={()=>plusViewer(0)} minusClick={()=>minusViewer(0)} defaultNumber={viewer[0]} text={'성인'} />
-                    <SeatCount plusClick={()=>plusViewer(1)} minusClick={()=>minusViewer(1)} defaultNumber={viewer[1]} text={'청소년'} />
-                    <SeatCount plusClick={()=>plusViewer(2)} minusClick={()=>minusViewer(2)} defaultNumber={viewer[2]} text={'경로'} />
-                    <SeatCount plusClick={()=>plusViewer(3)} minusClick={()=>minusViewer(3)} defaultNumber={viewer[3]} text={'우대'} />
+              <div className="content -seat" style={{display:'flex'}}>
+                <div>
+                  <div className="content-top">
+                    <div className="sub-title">관람인원선택</div>
+                    <button className="btn -reset" onClick={resetSeat}>초기화</button>
                   </div>
-                  <div className="component -seat-wrap">
-                    <div>screen</div>
-                    <div>
-                      {
-                        seatData.data.map((row,i)=>{
-                          return (
-                            <div className="row" key={i}>
-                            {
-                              row.map((status,ii)=>{
-                                  return (
-                                    <SeatButton
-                                    onClick={()=>{choiceSeat(i,ii)}}
-                                    choice={chooseSeat[i][ii]}
-                                    // seat={`${i + 1}열${ii + 1}번`} 
-                                    seat={`${i}/${ii}`} 
-                                    text={ii + 1} 
-                                    status={status} key={ii} 
-                                    />
-                                  )
-                              })
-                            }
-                            </div>
-                          )
-                        })
-                      }
+                  <div className="content-main">
+                    <div className="seat-count">
+                      <SeatCount plusClick={()=>plusViewer(0)} minusClick={()=>minusViewer(0)} defaultNumber={viewer[0]} text={'성인'} />
+                      <SeatCount plusClick={()=>plusViewer(1)} minusClick={()=>minusViewer(1)} defaultNumber={viewer[1]} text={'청소년'} />
+                      <SeatCount plusClick={()=>plusViewer(2)} minusClick={()=>minusViewer(2)} defaultNumber={viewer[2]} text={'경로'} />
+                      <SeatCount plusClick={()=>plusViewer(3)} minusClick={()=>minusViewer(3)} defaultNumber={viewer[3]} text={'우대'} />
+                    </div>
+                    <div className="component -seat-wrap">
+                      <div>screen</div>
+                      <div>
+                        {
+                          seatData.data.map((row,i)=>{
+                            return (
+                              <div className="row" key={i}>
+                              {
+                                row.map((status,ii)=>{
+                                    return (
+                                      <SeatButton
+                                      onClick={()=>{choiceSeat(i,ii)}}
+                                      choice={chooseSeat[i][ii]}
+                                      // seat={`${i + 1}열${ii + 1}번`} 
+                                      seat={`${i}/${ii}`} 
+                                      text={ii + 1} 
+                                      status={status} key={ii} 
+                                      />
+                                    )
+                                })
+                              }
+                              </div>
+                            )
+                          })
+                        }
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="component -booking-info">
+                  <div>12 듄:파트2</div>
+                  <div>2D(자막)</div>
+                  <div>강남</div>
+                  <div>6관</div>
+                  <div>2024.03.15</div>
+                  <div>17:15~20:11</div>
+                  <div>포스터</div>
+
+                  <div>보라네모 선택</div>
+                  <div>엑스네모 예매완료</div>
+                  <div>회색네모 선택불가</div>
+                  <div>회색네모 일반</div>
+                  <div>초록네모 장애인석</div>
+                  <div>성인 x 청소년 x 경로 x 우대 x</div>
+                  <div>선택좌석 b1 b2 c1 c2 d1 d2 d3 d4</div>
+                  <div>최종결제금액 x 원</div>
+                  <div>이전 | 다음</div>
                 </div>
               </div>
               </>
@@ -356,8 +429,9 @@ const Booking = ({handler}) => {
                             typeof city == 'number' &&
                             theaterData[city].theater.map((x,i)=>{
                               return (
-                                // <li key={i}><button onClick={()=>{setTeater(x)}}>{x}</button></li>
-                                <li key={i}><button onClick={()=>{chooseTheater(x)}}>{x}</button></li>
+                                <li className={classNames({'-active':theaterArr[city][i]})} key={i}>
+                                  <button onClick={()=>{chooseTheater(i)}}>{x}</button>
+                                </li>
                               )
                             })
                           }
@@ -399,21 +473,26 @@ const Booking = ({handler}) => {
                           )
                         })
                       }
-                    </Slider>
+                      </Slider>
                       </div>
                       <ul className="movie-list mt8">
-                        <BookMovieTimeList onClick={goSelectSeat}/>       
-                        <BookMovieTimeList onClick={goSelectSeat} />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
-                        <BookMovieTimeList />       
+                        {
+                          screenTime.map((x,i) => {
+                            return (
+                              <BookMovieTimeList key={i} 
+                              movieName={x.name}
+                              startTime={x.start}
+                              endTime={x.end}
+                              remainSeat={x.nowSeat}
+                              allSeat={x.allSeat}
+                              screen={x.option}
+                              theater={x.theater}
+                              theaterNum={x.hall}
+                              onClick={() => goSelectSeat(x)}
+                              />
+                            )
+                          })
+                        }
                       </ul>
                     </div>
                   </div>
@@ -422,7 +501,6 @@ const Booking = ({handler}) => {
             }
           </div>
         </div>
-      
       <Footer />
     </>
   )
