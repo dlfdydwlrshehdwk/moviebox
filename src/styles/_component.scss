@@ -584,4 +584,71 @@
       display: flex;
     }
   }
+  &.-booking-info {
+    background-color: #333;
+    overflow: hidden;
+    border-radius: 10px;
+    color: $white;
+    padding: 0 20px;
+    .wrap {
+      .movie-name {
+        display: flex;
+        gap: 8px;
+        padding: 15px 0 10px;
+        border-bottom: 1px solid #434343;
+        .name {
+          font-size: 16px;
+        }
+        .type {
+          margin-top: 4px;
+          color: #aaa;
+          font-size: 14px;
+        }
+      }
+      .movie-info {
+        padding: 10px 0 15px;
+        border-bottom: 1px solid #434343;
+        .info-left {
+          .theater {
+            color: #c4c4c4;
+            font-size: 13px;
+          }
+          .screen-time {
+            font-size: 12px;
+          }
+        }
+        .poster {
+          width: 70px;
+          height: 100px;
+        }
+      }
+      .seat {
+        border: 1px solid #434343;
+        &-left {
+          border-right: 1px solid #434343;
+          & > div {
+            display: flex;
+          }
+        }
+        &-right {
+          .text {
+
+          }
+        }
+      }
+      .price-info {
+        .txt {
+
+        }
+        .price {
+          & > span {
+
+          }
+        }
+      }
+    }
+    .-btn-tab {
+
+    }
+  }
 }

@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { IconBrunch, IconMoon, IconSun } from "../components/icon/Icons";
+import { IconAgeLimit12, IconBrunch, IconMoon, IconSun } from "../components/icon/Icons";
 import data from '../data/data'
 import theaterData from '../data/theater'
 import seatData from '../data/seat'
@@ -332,23 +332,68 @@ const Booking = ({handler}) => {
                 </div>
 
                 <div className="component -booking-info">
-                  <div>12 듄:파트2</div>
-                  <div>2D(자막)</div>
-                  <div>강남</div>
-                  <div>6관</div>
-                  <div>2024.03.15</div>
-                  <div>17:15~20:11</div>
-                  <div>포스터</div>
-
-                  <div>보라네모 선택</div>
-                  <div>엑스네모 예매완료</div>
-                  <div>회색네모 선택불가</div>
-                  <div>회색네모 일반</div>
-                  <div>초록네모 장애인석</div>
-                  <div>성인 x 청소년 x 경로 x 우대 x</div>
-                  <div>선택좌석 b1 b2 c1 c2 d1 d2 d3 d4</div>
-                  <div>최종결제금액 x 원</div>
-                  <div>이전 | 다음</div>
+                  <div className="wrap">
+                    <div className="movie-name">
+                      <IconAgeLimit12 style={{width : '20px',height:'20px'}}/>
+                      <div>
+                        <div className="name">듄:파트2</div>
+                        <div className="type">2D(자막)</div>
+                      </div>
+                    </div>
+                    <div className="movie-info">
+                      <div className="info-left">
+                        <div className="theater">
+                        </div>
+                        <div className="screen-time">
+                        </div>
+                      </div>
+                      <div className="poster">
+                      </div>
+                    </div>
+                    <div className="seat">
+                      <div className="seat-left">
+                        <div>
+                          <div>네모박스</div>
+                          <div>선택</div>
+                        </div>
+                        <div>
+                          <div>엑스박스</div>
+                          <div>예매완료</div>
+                        </div>
+                        <div>
+                          <div>회색박스</div>
+                          <div>선택불가</div>
+                        </div>
+                        <div>
+                          <div>검정박스</div>
+                          <div>일반</div>
+                        </div>
+                        <div>
+                          <div>초록박스</div>
+                          <div>장애인석</div>
+                        </div>
+                      </div>
+                      <div className="seat-right">
+                        <div className="text">선택좌석</div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                        <div className="component -choose-seat"></div>
+                      </div>
+                    </div>
+                    <div className="price-info">
+                        <div className="txt">최종결제금액</div>
+                        <div className="price"><span>0</span> 원</div>
+                    </div>
+                  </div>
+                  <div className="component -btn-tab">
+                    <button className="btn -prev">이전</button>
+                    <button className="btn -next">다음</button>
+                  </div>
                 </div>
               </div>
               </>
