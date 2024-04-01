@@ -80,7 +80,7 @@ const Header = ({
               </ul>
             </li>
             <li>
-              <a href="">예매</a>
+              <a href="/booking">예매</a>
               <ul className='sub-menu' style={{display:"flex",position:'absolute'}}>
                 <li>
                   <a href="">빠른예매</a>
@@ -108,7 +108,7 @@ const Header = ({
         </div>
       </div>
       <h1 className="logo">
-        <a href="">
+        <a href="/">
           {
             whiteMode ? <MainLogo /> : <HeaderLogo />
           }
